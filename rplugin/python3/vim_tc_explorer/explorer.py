@@ -69,7 +69,7 @@ class explorer(object):
             leadingC = '" '
         ret = []
         ret.append(leadingC + bar)
-        ret.append(leadingC + 'TC Explorer (alpha)')
+        ret.append(leadingC + 'Bolt for Neovim (alpha)')
         # Shall be highlighted
         ret.append(leadingC + '  $>' + self.cwd)
         qhStr = '  Quik Help: <Ret>:Open <C-q>:Quit <C-s>: Set CWD'

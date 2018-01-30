@@ -132,7 +132,7 @@ class searcher(object):
         leadingC = '#'
         ret = []
         ret.append(leadingC + bar)
-        ret.append(leadingC + 'TC Explorer search results')
+        ret.append(leadingC + 'Bolt search results')
         # Shall be highlighted
         ret.append(leadingC + '  $>' + self.command)
         qhStr = '  Quik Help: <Ret>:Open <C-a>:Expand <C-q>:Quit'
