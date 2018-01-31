@@ -1,6 +1,6 @@
-# vim-tc-explorer.nvim
+# bolt.nvim
 
-Fuzzy finder file manager for Neovim with emphasis on speed and visibility
+⚡ Fuzzy finder file manager for Neovim with emphasis on speed and visibility
 
 _"Get that Total Commander filter-as-you-type fast paced navigation in vim"_
 
@@ -8,7 +8,7 @@ _"Get that Total Commander filter-as-you-type fast paced navigation in vim"_
 
 ## Installation
 
-**Note:** vim-tc-explorer requires Neovim(latest is recommended) with Python3 enabled.
+**Note:** bolt.nvim requires Neovim(latest is recommended) with Python3 enabled.
 See [requirements](#requirements) if you aren't sure whether you have this.
 
 For vim-plug:
@@ -17,13 +17,13 @@ For vim-plug:
 
 call plug#begin()
 
-Plug 'philip-karlsson/vim-tc-explorer', { 'do': ':UpdateRemotePlugins' }
+Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 ```
 
 ## Requirements
-vim-tc-explorer requires Neovim with Python3.
+bolt.nvim requires Neovim with Python3.
 tIf `:echo has("python3")` returns `1`, then you have python 3 support; otherwise, see below.
 
 You can enable the Neovim Python3 interface with pip:
