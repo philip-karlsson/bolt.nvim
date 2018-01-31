@@ -1,4 +1,4 @@
-# bolt.nvim
+# ⚡ bolt.nvim
 
 ⚡ Fuzzy finder file manager for Neovim with emphasis on speed and visibility
 
