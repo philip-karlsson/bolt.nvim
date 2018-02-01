@@ -16,6 +16,7 @@ syntax match commands "<C-u>"
 syntax match commands "<C-i>"
 syntax match commands "<C-o>"
 syntax match commands "<C-p>"
+syntax match commands "<C-t>"
 
 " Match file types | FIXME: Add more
 syntax match editable ".*\.py$"

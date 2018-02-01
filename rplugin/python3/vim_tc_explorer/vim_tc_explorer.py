@@ -70,6 +70,7 @@ class vim_tc_explorer(object):
         # Expand/Collapse search matches
         self.nvim.command("inoremap <buffer> <C-a> <ESC>:TcSearchToggle<CR>")
         # File operations
+        self.nvim.command("inoremap <buffer> <C-t> <ESC>:BoltDelete Delete? ")
         self.nvim.command("inoremap <buffer> <C-y> <ESC>:BoltMove name: ")
         self.nvim.command("inoremap <buffer> <C-u> <ESC>:BoltRename name: ")
         self.nvim.command("inoremap <buffer> <C-i> <ESC>:BoltCopy dest: ")
@@ -251,6 +252,13 @@ class vim_tc_explorer(object):
     def move(self, args, range):
         exp = self.explorers[self.selectedExplorer]
         exp.move(args[1])
+        self.nvim.command('startinsert')
+        self.nvim.command('normal! $')
+        exp.draw()
+
+    def delete(self, args, range):
+        exp = self.explorers[self.selectedExplorer]
+        exp.delete()
         self.nvim.command('startinsert')
         self.nvim.command('normal! $')
         exp.draw()

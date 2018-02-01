@@ -4,6 +4,7 @@
 # License: MIT license
 # ============================================================================
 import os
+import shutil
 from vim_tc_explorer.filter import filter
 
 
@@ -48,6 +49,15 @@ class explorer(object):
 
     def copy(self, dest):
         os.copy(self.getSelected[0], dest)
+        self.cd('.')
+        self.updateListing(self.pattern)
+
+    def delete(self):
+        selFile = self.getSelected()[0]
+        if(os.path.isdir(selFile)):
+            shutil.rmtree(selFile)
+        else:
+            os.remove(selFile)
         self.cd('.')
         self.updateListing(self.pattern)
 
@@ -106,7 +116,7 @@ class explorer(object):
         ret.append(leadingC + qhStr)
         qhStr = '             <C-o>:Mkdir  <C-p>:Create File'
         ret.append(leadingC + qhStr)
-        qhStr = '             <C-y>:Move'
+        qhStr = '             <C-y>:Move   <C-t>:Delete'
         ret.append(leadingC + qhStr)
         ret.append(leadingC + bar)
         return ret

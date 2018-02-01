@@ -66,6 +66,10 @@ class VimTcExplorerHandlers(object):
     def bolt_createFile(self, args, range):
         self.TcExplorer.createFile(args, range)
 
+    @neovim.command("BoltDelete", range='', nargs='*', sync=True)
+    def bolt_delete(self, args, range):
+        self.TcExplorer.delete(args, range)
+
     @neovim.command("TcSearch", range='', nargs='*', sync=True)
     def tc_search(self, args, range):
         self.TcExplorer.tc_search(args, range)
