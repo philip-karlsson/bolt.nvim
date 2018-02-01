@@ -20,6 +20,7 @@ class explorer(object):
         # Index that tracks which file that is selected
         self.selected = 0
         self.active = True
+        self.pattern = ''
 
     def assignBuffer(self, buffer):
         self.buffer = buffer
@@ -40,6 +41,31 @@ class explorer(object):
             else:
                 explorer.append(token + '  ' + val)
 
+    def rename(self, newName):
+        os.rename(self.getSelected()[0], os.path.join(self.cwd, newName))
+        self.cd('.')
+        self.updateListing(self.pattern)
+
+    def copy(self, dest):
+        os.copy(self.getSelected[0], dest)
+        self.cd('.')
+        self.updateListing(self.pattern)
+
+    def move(self, dest):
+        os.rename(self.getSelected()[0], dest)
+        self.cd('.')
+        self.updateListing(self.pattern)
+
+    def mkdir(self, name):
+        os.makedirs(os.path.join(self.cwd, name))
+        self.cd('.')
+        self.updateListing(self.pattern)
+
+    def createFile(self, name):
+        open(os.path.join(self.cwd, name), 'a').close()
+        self.cd('.')
+        self.updateListing(self.pattern)
+
     def cd(self, path):
         self.cwd = os.path.abspath(os.path.join(self.cwd, path))
         self.currentFiles = os.listdir(self.cwd)
@@ -47,6 +73,7 @@ class explorer(object):
         self.changeSelection(0)
 
     def updateListing(self, pattern):
+        self.pattern = pattern
         self.filter.filter(self.currentFiles, pattern, self.fileredFiles)
         self.changeSelection(0)
 
@@ -58,7 +85,8 @@ class explorer(object):
             self.selected = len(self.fileredFiles)-1
 
     def getSelected(self):
-        return self.fileredFiles[self.selected], None
+        pathToFile = os.path.join(self.cwd, self.fileredFiles[self.selected])
+        return pathToFile, None
 
     # Gui header
     def getUIHeader(self):
@@ -72,9 +100,13 @@ class explorer(object):
         ret.append(leadingC + 'Bolt for Neovim (alpha)')
         # Shall be highlighted
         ret.append(leadingC + '  $>' + self.cwd)
-        qhStr = '  Quik Help: <Ret>:Open <C-q>:Quit <C-s>: Set CWD'
+        qhStr = '  Quik Help: <Ret>:Open   <C-q>:Quit   <C-s>:Set CWD'
         ret.append(leadingC + qhStr)
-        qhStr = '             <C-f>:Search'
+        qhStr = '             <C-f>:Search <C-u>:Rename <C-i>:Copy'
+        ret.append(leadingC + qhStr)
+        qhStr = '             <C-o>:Mkdir  <C-p>:Create File'
+        ret.append(leadingC + qhStr)
+        qhStr = '             <C-y>:Move'
         ret.append(leadingC + qhStr)
         ret.append(leadingC + bar)
         return ret

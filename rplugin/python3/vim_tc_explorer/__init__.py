@@ -46,6 +46,26 @@ class VimTcExplorerHandlers(object):
     def tc_set_cwd(self, args, range):
         self.TcExplorer.tc_set_cwd(args, range)
 
+    @neovim.command("BoltMove", range='', nargs='*', sync=True)
+    def bolt_move(self, args, range):
+        self.TcExplorer.move(args, range)
+
+    @neovim.command("BoltRename", range='', nargs='*', sync=True)
+    def bolt_rename(self, args, range):
+        self.TcExplorer.rename(args, range)
+
+    @neovim.command("BoltCopy", range='', nargs='*', sync=True)
+    def bolt_copy(self, args, range):
+        self.TcExplorer.copy(args, range)
+
+    @neovim.command("BoltMkdir", range='', nargs='*', sync=True)
+    def bolt_mkdir(self, args, range):
+        self.TcExplorer.mkdir(args, range)
+
+    @neovim.command("BoltCreateFile", range='', nargs='*', sync=True)
+    def bolt_createFile(self, args, range):
+        self.TcExplorer.createFile(args, range)
+
     @neovim.command("TcSearch", range='', nargs='*', sync=True)
     def tc_search(self, args, range):
         self.TcExplorer.tc_search(args, range)

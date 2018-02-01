@@ -11,6 +11,11 @@ syntax match commands "<Ret>"
 syntax match commands "<C-q>"
 syntax match commands "<C-s>"
 syntax match commands "<C-f>"
+syntax match commands "<C-y>"
+syntax match commands "<C-u>"
+syntax match commands "<C-i>"
+syntax match commands "<C-o>"
+syntax match commands "<C-p>"
 
 " Match file types | FIXME: Add more
 syntax match editable ".*\.py$"

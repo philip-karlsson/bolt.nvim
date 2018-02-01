@@ -69,6 +69,13 @@ class vim_tc_explorer(object):
         self.nvim.command("inoremap <buffer> <C-s> <ESC>:TcSetCwd<CR>")
         # Expand/Collapse search matches
         self.nvim.command("inoremap <buffer> <C-a> <ESC>:TcSearchToggle<CR>")
+        # File operations
+        self.nvim.command("inoremap <buffer> <C-y> <ESC>:BoltMove name: ")
+        self.nvim.command("inoremap <buffer> <C-u> <ESC>:BoltRename name: ")
+        self.nvim.command("inoremap <buffer> <C-i> <ESC>:BoltCopy dest: ")
+        self.nvim.command("inoremap <buffer> <C-o> <ESC>:BoltMkdir name: ")
+        remapStr = "inoremap <buffer> <C-p> <ESC>:BoltCreateFile name: "
+        self.nvim.command(remapStr)
         # Close
         self.nvim.command("inoremap <buffer> <C-q> <ESC>:TcExpClose<CR>")
 
@@ -240,6 +247,41 @@ class vim_tc_explorer(object):
             exp.draw()
         self.nvim.command('startinsert')
         self.nvim.command('normal! $')
+
+    def move(self, args, range):
+        exp = self.explorers[self.selectedExplorer]
+        exp.move(args[1])
+        self.nvim.command('startinsert')
+        self.nvim.command('normal! $')
+        exp.draw()
+
+    def rename(self, args, range):
+        exp = self.explorers[self.selectedExplorer]
+        exp.rename(args[1])
+        self.nvim.command('startinsert')
+        self.nvim.command('normal! $')
+        exp.draw()
+
+    def copy(self, args, range):
+        exp = self.explorers[self.selectedExplorer]
+        exp.copy(args[1])
+        self.nvim.command('startinsert')
+        self.nvim.command('normal! $')
+        exp.draw()
+
+    def mkdir(self, args, range):
+        exp = self.explorers[self.selectedExplorer]
+        exp.mkdir(args[1])
+        self.nvim.command('startinsert')
+        self.nvim.command('normal! $')
+        exp.draw()
+
+    def createFile(self, args, range):
+        exp = self.explorers[self.selectedExplorer]
+        exp.createFile(args[1])
+        self.nvim.command('startinsert')
+        self.nvim.command('normal! $')
+        exp.draw()
 
     def handle_input(self):
         """ Input handler for filter """

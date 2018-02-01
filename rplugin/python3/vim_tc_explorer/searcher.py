@@ -123,9 +123,11 @@ class searcher(object):
             # This is a match in a file
             lineParts = currLine.split(':')
             self.buffer[:] = lineParts
-            currLine = lineParts[0]
+            pathToFile = os.path.join(self.cwd, lineParts[0])
             lineNum = int(lineParts[1])
-        return currLine, lineNum
+        else:
+            pathToFile = os.path.join(self.cwd, currLine)
+        return pathToFile, lineNum
 
     def getUIHeader(self):
         bar = "==============================================================="
