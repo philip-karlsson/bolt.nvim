@@ -23,6 +23,11 @@ typing to filter your search results.
 
 Unleash the commander using the multi-pane mode.
 
+#### Notice
+
+The development of Bolt.nvim is still in a **very early phase**, so bugs are expected. 
+If you find something that needs fixing, please create an issue.
+
 ## Installation
 
 **Note:** bolt.nvim requires Neovim(latest is recommended) with Python3 enabled.
