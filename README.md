@@ -14,7 +14,7 @@ The filter is automatically updated as you type , no extra keystrokes needed.
 ### Searching
 ![Example Highlight](https://imgur.com/VBUnCBQ.gif)
 
-Quicly perform a search in the active directory using [rip-grep](https://www.google.com). If desired, expand the
+Quicly perform a search in the active directory using [ripgrep](https://github.com/BurntSushi/ripgrep). If desired, expand the
 results to see which lines that matches your pattern. For convenience, simply start
 typing to filter your search results.
 
