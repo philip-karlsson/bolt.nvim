@@ -14,7 +14,7 @@ The filter is automatically updated as you type , no extra keystrokes needed.
 ### Searching
 ![Example Highlight](https://imgur.com/VBUnCBQ.gif)
 
-Quicly perform a search in the active directory using [rip-grep](https://www.google.com). If desired, expand the
+Quicly perform a search in the active directory using [ripgrep](https://github.com/BurntSushi/ripgrep). If desired, expand the
 results to see which lines that matches your pattern. For convenience, simply start
 typing to filter your search results.
 
@@ -22,6 +22,11 @@ typing to filter your search results.
 ![Example Highlight](https://imgur.com/8uCxpO8.gif)
 
 Unleash the commander using the multi-pane mode.
+
+#### Notice
+
+The development of Bolt.nvim is still in a **very early phase**, so bugs are expected. 
+If you find something that needs fixing, please create an issue.
 
 ## Installation
 
@@ -61,6 +66,10 @@ Thanks for trying out this plugin, any feedback/contrubution would be much appre
 this is my first take on writing plugins for Neovim. Additionally, I would like to express my
 cincere gratitude to Per-Åke Bligård and David Johansson for introducing me to the wonderful
 world of unorthodox file managers 🍻
+
+## Contributors
+- Philip Karlsson
+- David Johansson
 
 ## License
 MIT License
