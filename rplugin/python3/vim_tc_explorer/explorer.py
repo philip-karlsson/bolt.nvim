@@ -22,6 +22,8 @@ class explorer(object):
         self.selected = 0
         self.active = True
         self.pattern = ''
+        # The header takes up 9 rows
+        self.headerLength = 9
 
     def assignBuffer(self, buffer):
         self.buffer = buffer

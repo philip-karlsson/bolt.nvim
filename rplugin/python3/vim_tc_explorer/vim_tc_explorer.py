@@ -38,6 +38,18 @@ class vim_tc_explorer(object):
         if(self.useLogging):
             self.logBuffer.append(msg)
 
+    def bufCmd(self, buffer, cmd):
+        prevbuffer = self.nvim.current.buffer
+        self.nvim.current.buffer = buffer
+        self.nvim.command(cmd)
+        self.nvim.current.buffer = prevbuffer
+
+    def winCmd(self, window, cmd):
+        prevwindow = self.nvim.current.window
+        self.nvim.current.window = window
+        self.nvim.command(cmd)
+        self.nvim.current.window = prevwindow
+
     def close(self, withFile=True):
         # Method used to close the plugin
         # Delete both buffers
@@ -103,10 +115,12 @@ class vim_tc_explorer(object):
         self.nvim.command('setlocal buftype=nofile')
         self.nvim.command('setlocal filetype=vim_tc_explorer')
         self.explorerBufferNumberOne = self.nvim.current.buffer.number
+        self.explorerWindowOne = self.nvim.current.window
         # Only one explorer
         self.explorerBufferNumberTwo = None
         exp = self.explorers[self.selectedExplorer]
         exp.assignBuffer(self.nvim.buffers[self.explorerBufferNumberOne])
+        exp.window = self.nvim.current.window
         # Go back to the input buffer window
         self.nvim.command('wincmd j')
         # FIXME: Add one more line for quick help
@@ -136,6 +150,7 @@ class vim_tc_explorer(object):
         self.nvim.command('setlocal buftype=nofile')
         self.nvim.command('setlocal filetype=vim_tc_explorer')
         self.explorerBufferNumberOne = self.nvim.current.buffer.number
+        self.explorerWindowOne = self.nvim.current.window
         exp = self.explorers[0]
         exp.assignBuffer(self.nvim.buffers[self.explorerBufferNumberOne])
         # Two explorers
@@ -143,6 +158,7 @@ class vim_tc_explorer(object):
         self.nvim.command('setlocal buftype=nofile')
         self.nvim.command('setlocal filetype=vim_tc_explorer')
         self.explorerBufferNumberTwo = self.nvim.current.buffer.number
+        self.explorerWindowTwo = self.nvim.current.window
         exp = self.explorers[1]
         exp.assignBuffer(self.nvim.buffers[self.explorerBufferNumberTwo])
         # Go back to the input buffer window
@@ -188,6 +204,8 @@ class vim_tc_explorer(object):
         exp = self.explorers[self.selectedExplorer]
         exp.changeSelection(-1)
         exp.draw()
+        exp.window.cursor = (exp.selected + exp.headerLength, 0)
+        self.winCmd(exp.window, 'normal! zz')
         self.nvim.command('startinsert')
         self.nvim.command('normal! $')
 
@@ -195,6 +213,8 @@ class vim_tc_explorer(object):
         exp = self.explorers[self.selectedExplorer]
         exp.changeSelection(1)
         exp.draw()
+        exp.window.cursor = (exp.selected + exp.headerLength, 0)
+        self.winCmd(exp.window, 'normal! zz')
         self.nvim.command('startinsert')
         self.nvim.command('normal! $')
 
@@ -229,6 +249,7 @@ class vim_tc_explorer(object):
         self.expSave = self.explorers[self.selectedExplorer]
         # Replace the current explorer with a searcher and borrow its buffer
         se = searcher(self.nvim, self.expSave.buffer, self.expSave.cwd)
+        se.window = self.expSave.window
         # Perfor the search with the correct parameters
         dir = self.expSave.cwd
         filePattern = args[1]
@@ -248,6 +269,7 @@ class vim_tc_explorer(object):
             exp.toggle()
             exp.updateListing(self.nvim.current.line)
             exp.draw()
+            self.winCmd(exp.window, 'normal! zz')
         self.nvim.command('startinsert')
         self.nvim.command('normal! $')
 

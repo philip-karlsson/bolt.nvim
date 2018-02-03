@@ -25,6 +25,8 @@ class searcher(object):
         self.fileredFiles = []
         self.expanded = False
         self.cwd = cwd
+        # Header takes up 6 rows
+        self.headerLength = 6
 
     def assignBuffer(self, buffer):
         # This method is only called during re-init so we already have old
