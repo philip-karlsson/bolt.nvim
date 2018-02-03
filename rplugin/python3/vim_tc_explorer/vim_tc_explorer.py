@@ -72,11 +72,22 @@ class vim_tc_explorer(object):
         # Expand/Collapse search matches
         self.nvim.command("inoremap <buffer> <C-a> <ESC>:TcSearchToggle<CR>")
         # File operations
-        self.nvim.command("inoremap <buffer> <C-t> <ESC>:BoltDelete Delete? ")
-        self.nvim.command("inoremap <buffer> <C-y> <ESC>:BoltMove name: ")
-        self.nvim.command("inoremap <buffer> <C-u> <ESC>:BoltRename name: ")
-        self.nvim.command("inoremap <buffer> <C-i> <ESC>:BoltCopy dest: ")
-        self.nvim.command("inoremap <buffer> <C-o> <ESC>:BoltMkdir name: ")
+        #
+        # Original total commander shortcuts 
+        # F1 - Help
+        # F2 - Refresh (suggest to map it to rename)
+        # F3 - List file content
+        # F4 - Edit
+        # F5 - Copy
+        # F6 - Move
+        # F7 - Create directory
+        # F8 - Delete file
+        self.nvim.command("inoremap <buffer> <F2> <ESC>:BoltRename name: ")
+        self.nvim.command("inoremap <buffer> <F5> <ESC>:BoltCopy dest: ")
+        self.nvim.command("inoremap <buffer> <F6> <ESC>:BoltMove name: ")
+        self.nvim.command("inoremap <buffer> <F7> <ESC>:BoltMkdir name: ")
+        self.nvim.command("inoremap <buffer> <F8> <ESC>:BoltDelete Delete? ")
+
         remapStr = "inoremap <buffer> <C-p> <ESC>:BoltCreateFile name: "
         self.nvim.command(remapStr)
         # Close
@@ -260,7 +271,7 @@ class vim_tc_explorer(object):
 
     def delete(self, args, range):
         exp = self.explorers[self.selectedExplorer]
-        exp.delete()
+        exp.delete(args[1])
         self.nvim.command('startinsert')
         self.nvim.command('normal! $')
         exp.draw()
