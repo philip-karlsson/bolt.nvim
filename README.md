@@ -62,6 +62,10 @@ this is my first take on writing plugins for Neovim. Additionally, I would like 
 cincere gratitude to Per-Åke Bligård and David Johansson for introducing me to the wonderful
 world of unorthodox file managers 🍻
 
+## Contributors
+- Philip Karlsson
+- David Johansson
+
 ## License
 MIT License
 
