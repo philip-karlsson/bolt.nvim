@@ -58,8 +58,10 @@ class vim_tc_explorer(object):
         self.nvim.command("inoremap <buffer> <BS> %")
         # Up
         self.nvim.command("inoremap <buffer> <C-k> <ESC>:TcExpUp<CR>")
+        self.nvim.command("inoremap <buffer> <Up> <ESC>:TcExpUp<CR>")
         # Down
         self.nvim.command("inoremap <buffer> <C-j> <ESC>:TcExpDown<CR>")
+        self.nvim.command("inoremap <buffer> <Down> <ESC>:TcExpDown<CR>")
         # Tab
         self.nvim.command("inoremap <buffer> <tab> <ESC>:TcExpTab<CR>")
         # Search
