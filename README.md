@@ -54,11 +54,15 @@ You can enable the Neovim Python3 interface with pip:
 
     pip3 install neovim
 
-### TODOs:
+### Development:
 - Create proper vim documentation
 - Complete the dual-pane mode
 - Make it possible navigate archives (TC feature)
 - Populate README.md with keybindings
+
+New structure:
+
+![Example Highlight](./media/proposed_structure.png)
 
 ## Self-Promotion
 Like bolt.nvim? Make sure to follow the repository and why not leave a star.
