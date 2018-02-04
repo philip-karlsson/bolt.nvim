@@ -50,18 +50,23 @@ class explorer(object):
         self.updateListing(self.pattern)
 
     def copy(self, dest):
-        os.copy(self.getSelected[0], dest)
+        selFile = self.getSelected()[0]
+        if os.path.isdir(selFile):
+            shutil.copytree(selFile, dest)
+        else:
+            shutil.copy(selFile, dest)
         self.cd('.')
         self.updateListing(self.pattern)
 
-    def delete(self):
-        selFile = self.getSelected()[0]
-        if(os.path.isdir(selFile)):
-            shutil.rmtree(selFile)
-        else:
-            os.remove(selFile)
-        self.cd('.')
-        self.updateListing(self.pattern)
+    def delete(self, yesno):
+        if yesno == "y":
+            selFile = self.getSelected()[0]
+            if os.path.isdir(selFile):
+                shutil.rmtree(selFile)
+            else:
+                os.remove(selFile)
+            self.cd('.')
+            self.updateListing(self.pattern)
 
     def move(self, dest):
         os.rename(self.getSelected()[0], dest)
@@ -114,11 +119,11 @@ class explorer(object):
         ret.append(leadingC + '  $>' + self.cwd)
         qhStr = '  Quik Help: <Ret>:Open   <C-q>:Quit   <C-s>:Set CWD'
         ret.append(leadingC + qhStr)
-        qhStr = '             <C-f>:Search <C-u>:Rename <C-i>:Copy'
+        qhStr = '             <C-f>:Search <C-p>:Create File'
         ret.append(leadingC + qhStr)
-        qhStr = '             <C-o>:Mkdir  <C-p>:Create File'
+        qhStr = '             <F2>:Rename  <F5>:Copy    <F6>:Move   '
         ret.append(leadingC + qhStr)
-        qhStr = '             <C-y>:Move   <C-t>:Delete'
+        qhStr = '             <F7>:Mkdir   <F8>:Delete   '
         ret.append(leadingC + qhStr)
         ret.append(leadingC + bar)
         return ret
