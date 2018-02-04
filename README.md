@@ -4,6 +4,8 @@
 
 _"Total Commander inspired file manager for the 21st century"_
 
+[Gitter **Chat**](https://gitter.im/bolt-nvim/Lobby)
+
 ## Demo
 
 ### Navigation
