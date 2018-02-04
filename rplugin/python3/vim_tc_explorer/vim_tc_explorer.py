@@ -150,16 +150,16 @@ class vim_tc_explorer(object):
         self.nvim.command('setlocal buftype=nofile')
         self.nvim.command('setlocal filetype=vim_tc_explorer')
         self.explorerBufferNumberOne = self.nvim.current.buffer.number
-        self.explorerWindowOne = self.nvim.current.window
         exp = self.explorers[0]
+        exp.window = self.nvim.current.window
         exp.assignBuffer(self.nvim.buffers[self.explorerBufferNumberOne])
         # Two explorers
         self.nvim.command('vsplit TC_Explorer_1')
         self.nvim.command('setlocal buftype=nofile')
         self.nvim.command('setlocal filetype=vim_tc_explorer')
         self.explorerBufferNumberTwo = self.nvim.current.buffer.number
-        self.explorerWindowTwo = self.nvim.current.window
         exp = self.explorers[1]
+        exp.window = self.nvim.current.window
         exp.assignBuffer(self.nvim.buffers[self.explorerBufferNumberTwo])
         # Go back to the input buffer window
         self.nvim.command('wincmd j')
