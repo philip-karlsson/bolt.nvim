@@ -1,5 +1,5 @@
 # ============================================================================
-# FILE: searcher.py
+# FILE: searcher_pane.py
 # AUTHOR: Philip Karlsson <philipkarlsson at me.com>
 # License: MIT license
 # ============================================================================
@@ -14,17 +14,17 @@ class resultGroup(object):
         self.fileName = fileName
 
 
-class searcher(object):
+class searcher_pane(pane):
     def __init__(self, nvim, buffer, cwd):
+        search.__init__(cwd)
+        self.cwd = cwd
         self.nvim = nvim
-        self.filter = filter()
         self.buffer = buffer
         # Attribute to distinguish from explorer
         self.isSearcher = True
         self.selected = 0
         self.fileredFiles = []
         self.expanded = False
-        self.cwd = cwd
         # Header takes up 6 rows
         self.headerLength = 6
 

@@ -1,5 +1,5 @@
 # ============================================================================
-# FILE: explorer.py
+# FILE: explorer_pane.py
 # AUTHOR: Philip Karlsson <philipkarlsson at me.com>
 # License: MIT license
 # ============================================================================
@@ -8,13 +8,12 @@ import shutil
 from vim_tc_explorer.filter import filter
 
 
-class explorer(object):
+class explorer_pane(pane):
     """ Class for an explorer that is used in the panes """
     def __init__(self, cwd):
+        search.__init__(cwd)
         self.isSearcher = False
         # Instance of the filter
-        self.filter = filter()
-        self.cwd = cwd
         # The the current files
         self.currentFiles = os.listdir(self.cwd)
         self.fileredFiles = self.currentFiles[:]
